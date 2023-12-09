@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Imoveis {
+  idImovel Int       @id @default(autoincrement())
+  tipo     String
+  endereco String
+  valor    Float
+  locacao  Locacao[]
+}
+
+model Clientes {
+  idCliente Int       @id @default(autoincrement())
+  nome      String
+  cpf       String
+  email     String
+  telefone  String
+  locacao   Locacao[]
+}
+
+model Locacao {
+<<<<<<< HEAD
+  idLocacao  Int      @id @default(autoincrement())
+  idCliente  Int
+  idImovel   Int
+  dataInicio DateTime
+  dataFim    DateTime
+  status     String
+  cliente    Clientes @relation(fields: [idCliente], references: [idCliente])
+  imovel     Imoveis  @relation(fields: [idImovel], references: [idImovel])
+}
+
+model User {
+  idUser   Int     @id @default(autoincrement())
+  idLogin  Int
+  email    String  @unique
+  name     String?
+  password String?
+  login    Login   @relation(fields: [idLogin], references: [idLogin])
+}
+
+model Login {
+  idLogin  Int        @id @default(autoincrement())
+  email    String     @unique
+  password String?
+  User     User[]
+  
+=======
+  idLocacao Int  @id @default(autoincrement())
+  idCliente Int
+  idImovel Int
+  dataInicio String
+  dataFim String
+  status String
+  cliente Clientes @relation(fields: [idCliente], references: [idCliente])
+  imovel Imoveis @relation(fields: [idImovel], references: [idImovel]) 
+
+>>>>>>> af9cf638fb5f16f943536b88c285554e01ecfdff
+}
+
